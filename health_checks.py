@@ -2,6 +2,7 @@
 
 import shutil
 import psutil
+from network import *
 
 #Function the will recieve a disk check and
 #returns true if there's more the 20% free or false if its less
@@ -18,5 +19,7 @@ def check_cpu_usage():
 
 if not check_disk_usage("/") or  not check_cpu_usage():
     print("Danger".upper())
-else:
+elif check_localhost() and check_connectivity():
     print(":) Your computer is healthy ;)".upper())
+else:
+    print("Network checks failed")
